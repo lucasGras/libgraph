@@ -1,0 +1,16 @@
+
+---------TLK FILE BEHAVIOUR START---------
+
+name=(Le vendeur)
+text=(Ceci est un test ! Bonne chance
+Retour a la ligne)
+dialog_box_pos=(10,10)
+#end
+
+---------TLK FILE BEHAVIOUR END---------
+
+Order to respect
+	<name>=(...)
+	<text>=(...)
+	<dialogbox_pos>=(...','...)
+	#end

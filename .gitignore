@@ -1,0 +1,8 @@
+.idea/
+cmake-build-debug/
+cmake-build-release/
+Doxyfile
+test.enemy
+test.tlk
+attack1.particle
+Documentation/

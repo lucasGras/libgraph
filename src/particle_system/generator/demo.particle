@@ -1,0 +1,24 @@
+---------PARTICLE FILE BEHAVIOUR START---------
+
+name=(Effet 1)
+nb_particle=(15)
+origin=(250,300)
+range=(100)
+min_speed=(3)
+max_speed=(8)
+max_R_speed=(4)
+p_path=(../../def_ressources/particles/)
+#end
+
+---------PARTICLE FILE BEHAVIOUR END---------
+
+Order to respect
+	<name>=(...)
+	<nb_particle>=(...)
+	<origin>=(...','...)
+	<range>=(...)
+	<min_speed>=(...)
+	<max_speed>=(...)
+	<max_R_speed>=(...)
+	<p_path>=(realpath)
+	#end
