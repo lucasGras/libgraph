@@ -7,20 +7,21 @@
 
 #include "lib_graph.h"
 
-void    backpack(void *animat)
+void	set_attack_type(animator_t *self, attack_type_t type)
 {
-	animator_t *self = (animator_t *)animat;
+	player_t	*player_ptr = (player_t *)self->player;
 
-	(void)self;
+	if (type == LEFT) {
+		type = (player_ptr->horizontal_dir == 1) ? RIGHT : LEFT;
+	}
+	player_ptr->attack_type = type;
 }
 
 void    face_sword(animator_t *self)
 {
-	int stock = self->rect.top;
-	int stock_left = self->rect.left;
-	int stock_width = self->rect.width;
-	int stock_height = self->rect.height;
+	sfIntRect	stock = self->rect;
 
+	set_attack_type(self, LEFT);
 	self->rect.width = 65;
 	self->rect.height = 80;
 	for (self->move_rect = 0; self->move_rect != 5; self->move_rect++) {
@@ -30,21 +31,16 @@ void    face_sword(animator_t *self)
 		sfSprite_setPosition(self->sprite, self->pos);
 		wait_for_seconds(0.05);
 	}
-	self->rect.top = stock;
-	self->rect.left = stock_left;
-	self->rect.height = stock_height;
-	self->rect.width = stock_width;
+	self->rect = stock;
 	sfSprite_setTextureRect(self->sprite, self->rect);
 	sfSprite_setPosition(self->sprite, self->pos);
 }
 
 void    face_sword_down(animator_t *self)
 {
-	int stock = self->rect.top;
-	int stock_left = self->rect.left;
-	int stock_width = self->rect.width;
-	int stock_height = self->rect.height;
+	sfIntRect	stock = self->rect;
 
+	set_attack_type(self, BOT);
 	self->rect.width = 65;
 	self->rect.height = 90;
 	for (self->move_rect = 0; self->move_rect != 5; self->move_rect++) {
@@ -54,21 +50,17 @@ void    face_sword_down(animator_t *self)
 		sfSprite_setPosition(self->sprite, self->pos);
 		wait_for_seconds(0.05);
 	}
-	self->rect.top = stock;
-	self->rect.left = stock_left;
-	self->rect.height = stock_height;
-	self->rect.width = stock_width;
+	self->rect = stock;
 	sfSprite_setTextureRect(self->sprite, self->rect);
 	sfSprite_setPosition(self->sprite, self->pos);
+	set_attack_type(self, NONE);
 }
 
 void    face_sword_up(animator_t *self)
 {
-	int stock = self->rect.top;
-	int stock_left = self->rect.left;
-	int stock_width = self->rect.width;
-	int stock_height = self->rect.height;
-	
+	sfIntRect	stock = self->rect;
+
+	set_attack_type(self, TOP);
 	self->rect.width = 65;
 	self->rect.height = 90;
 	for (self->move_rect = 0; self->move_rect != 5; self->move_rect++) {
@@ -78,10 +70,7 @@ void    face_sword_up(animator_t *self)
 		sfSprite_setPosition(self->sprite, self->pos);
 		wait_for_seconds(0.05);
 	}
-	self->rect.top = stock;
-	self->rect.left = stock_left;
-	self->rect.height = stock_height;
-	self->rect.width = stock_width;
+	self->rect = stock;
 	sfSprite_setTextureRect(self->sprite, self->rect);
 	sfSprite_setPosition(self->sprite, self->pos);
 }
@@ -89,10 +78,9 @@ void    face_sword_up(animator_t *self)
 void	atk_sword(void *animat)
 {
 	animator_t *self = (animator_t *)animat;
-	int stock = self->rect.top;
-	int stock_left = self->rect.left;
-	int stock_width = self->rect.width; int stock_height = self->rect.height;
+	sfIntRect	stock = self->rect;
 
+	set_attack_type(self, AROUND);
 	self->rect.width = 65;
 	self->rect.height = 100;
 	for (self->move_rect = 0; self->move_rect != 7; self->move_rect++) {
@@ -102,10 +90,7 @@ void	atk_sword(void *animat)
 		sfSprite_setPosition(self->sprite, self->pos);
 		wait_for_seconds(0.05);
 	}
-	self->rect.top = stock;
-	self->rect.left = stock_left;
-	self->rect.height = stock_height;
-	self->rect.width = stock_width;
+	self->rect = stock;
 	sfSprite_setTextureRect(self->sprite, self->rect);
 	sfSprite_setPosition(self->sprite, self->pos);
 }

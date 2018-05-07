@@ -34,15 +34,25 @@ void		cor_desactive_enemy(enemy_t *self)
 	self->thread = NULL;
 }
 
+void		cor_mouvement(enemy_t *self, sfVector2f unit)
+{
+	self->position.x += unit.x;
+	self->position.y += unit.y;
+	sfRectangleShape_setPosition(self->box_collider, self->position);
+}
+
 void		cor_follow_target(void *data)
 {
 	enemy_t		*self = (enemy_t *)data;
 	sfVector2f	target_follow;
 
+	wait_for_seconds(5);
 	while (self->alive) {
 		target_follow = get_target_vector(self,
 			self->target->position);
-
+		self->mouvement(self, target_follow);
+		self->on_trigger(self);
+		wait_for_seconds(0.1);
 	}
-	self->desactive(self);	
+	self->desactive(self);
 }

@@ -74,16 +74,18 @@ SRC		=	src/button/button_function.c \
 			src/player_system/init_player.c \
 			src/player_system/player_action/life_action.c \
 			src/player_system/player_action/mana_action.c \
+			src/player_system/player_trigger.c \
 			src/vector/vector.c \
 			src/enemy/enemy_target.c \
 			src/enemy/enemy_trigger.c \
 			src/enemy/init_enemy.c \
+			src/enemy/display_enemy.c
 
 SRC_EX		=	main.c
 
 OBJ_EX		=	$(SRC_EX:.c=.o) $(SRC_UTILS:.c=.o) $(SRC:.c=.o)
 
-CFLAGS		+=	-Wall -Wextra -g3
+CFLAGS		+=	-Wall -Wextra
 
 CFLAGS		+=	-I./include
 

@@ -480,6 +480,16 @@ inventory_visual_t	init_inventory_visual(void);
 
 #define INVENTORY_START_STATE 0
 
+#define COLLIDER_AROUND 0
+#define COLLIDER_TOP 1
+#define COLLIDER_RIGHT 2
+#define COLLIDER_BOT 3
+#define COLLIDER_LEFT 4
+
+typedef enum	attack_type_s {
+	AROUND, TOP, RIGHT, BOT, LEFT, NONE
+} attack_type_t;
+
 /**
  * \struct player_t
  * \brief Player component
@@ -494,7 +504,9 @@ typedef  struct player_s {
 	inventory_item_t	curent_item; /*!< Player's item*/
 	inventory_visual_t	inventory_visual;
 	sfBool			inventory_displayed;
-	sfRectangleShape	*attack_collider;
+	sfRectangleShape	**attack_collider;
+	attack_type_t		attack_type;
+	int			horizontal_dir;
 	sfVector2f		position;
 	sfRenderWindow		*window_ptr; /*!< sfRenderWindow reference*/
 	void		(*add_item)(struct player_s *, char *, int, int); /*!< Function to add item in inventory list*/
@@ -517,6 +529,7 @@ void			cor_display_inventory(void *);
 void			display_inventory(player_t *);
 char			*get_item_visualizer(char *);
 void			manage_event(animator_t *);
+void			update_trigger(player_t *);
 
 #endif
 
@@ -537,18 +550,24 @@ typedef struct enemy_s {
 	int			speed;
 	player_t		*target;
 	sfRectangleShape	*box_collider;
+	sfTexture		*texture;
 	sfVector2f		position;
 	sfThread		*thread;
+	sfRenderWindow		*window_ptr;
 	void			(*on_trigger)(struct enemy_s *);
 	void			(*active)(struct enemy_s *);
 	void			(*desactive)(struct enemy_s *);
+	void			(*mouvement)(struct enemy_s *, sfVector2f);
 } enemy_t;
 
+enemy_t		*create_enemy(char *, player_t *, sfRenderWindow *);
+void		display_enemy(enemy_t *);
 void		cor_on_trigger(enemy_t *);
 sfVector2f	get_target_vector(enemy_t *, sfVector2f);
-void		cor_follow_target(void *data);
+void		cor_follow_target(void *);
 void		cor_active_enemy(enemy_t *);
 void		cor_desactive_enemy(enemy_t *);
+void		cor_mouvement(enemy_t *, sfVector2f);
 
 #endif
 

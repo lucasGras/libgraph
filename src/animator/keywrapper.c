@@ -43,7 +43,7 @@ keywrapper_t		*my_keywrapper(animator_t *self)
 	tab[1] = init_wrapper(sfKeyLeft, my_left, self);
 	tab[2] = init_wrapper(sfKeyUp, my_up, self);
 	tab[3] = init_wrapper(sfKeyDown, my_down, self);
-	tab[4] = init_wrapper(sfKeyE, backpack, self);
+	tab[4] = init_wrapper(sfKeyE, NULL, NULL);
 	tab[5] = init_wrapper(sfKeyZ, atk_sword, self);
 	tab[6] = init_wrapper(sfKeyD, check_arrow, self);
 	tab[7] = init_wrapper(sfKeyQ, check_sword, self);

@@ -13,6 +13,7 @@
  * libgrah.a
  */
 
+#include <lib_graph.h>
 #include "lib_graph.h"
 
 void on_click(void *db)
@@ -31,6 +32,7 @@ void __tester__()
 	player_t *player = create_player(window);
 	animator_t *animator = create_animator(BLUE_SPRT, 44, 60, &event);
 	pnj_component_t *pnj1 = init_pnj("test.tlk", window);
+	enemy_t		*enemy = create_enemy("test.enemy", player, window);
 
 	animator->set_extern_keyboard(animator, sfKeyTab, player->inventory_status, player);
 	animator->set_extern_joystick(animator, XBOX_SELECT, player->inventory_status, player);
@@ -39,10 +41,14 @@ void __tester__()
 	player->add_item(player, "Excalibur", 10, 0);
 	player->add_item(player, "MagicBook", 0, 10);
 	animator->active(animator, player);
+	enemy->active(enemy);
+	printf("current weapon damage: %s=%d\n", player->curent_item.name, player->curent_item.damage);
 	sfRenderWindow_setFramerateLimit(window, 60);
 	while (sfRenderWindow_isOpen(window)) {
 		sfRenderWindow_clear(window, sfBlack);
 		sfRenderWindow_drawSprite(window, animator->sprite, sfFalse);
+		display_enemy(enemy);
+		update_trigger(player);
 		display_pnj(pnj1, sfFalse);
 		display_inventory(player);
 		while (sfRenderWindow_pollEvent(window, &event)) {
