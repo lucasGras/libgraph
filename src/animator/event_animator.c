@@ -9,17 +9,13 @@
 #include <lib_graph.h>
 #include "lib_graph.h"
 
-void	cor_manage_event(animator_t *self)
+void	cor_manage_event(animator_t *self, sfEventType event)
 {
-	if (self->event->type == sfEvtKeyPressed) {
+	if (event == sfEvtKeyPressed) {
 		spritesheet_mouvement(self);
 		return;
 	}
-	if (self->event->type == sfEvtJoystickButtonPressed) {
+	if (event == sfEvtJoystickButtonPressed) {
 		joystick_button_manager(self);
-	}
-	if (self->event->type == sfEvtJoystickMoved
-		&& joystick_moved(self) == 1) {
-		joystick_manager(self);
 	}
 }

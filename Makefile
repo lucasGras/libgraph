@@ -85,7 +85,7 @@ SRC_EX		=	main.c
 
 OBJ_EX		=	$(SRC_EX:.c=.o) $(SRC_UTILS:.c=.o) $(SRC:.c=.o)
 
-CFLAGS		+=	-Wall -Wextra
+CFLAGS		+=	-Wall -Wextra -g3
 
 CFLAGS		+=	-I./include
 
@@ -96,9 +96,8 @@ exe		:	$(NAME_EX)
 $(NAME_LIB)	:
 			cc -c $(SRC) $(SRC_UTILS) -lc_graph_prog -lm \
 			-I./include/
+			@if [ -a "assets.tar.gz" ]; then tar -xvf assets.tar.gz; fi
 			@ar rc $(NAME_LIB) *.o
-			make compress
-			@tar -xvf assets.tar.gz
 			@$(foreach file , $(SRC), echo -ne "\\033[32m[OK] \\033[m" && echo $(file);)
 			@cat .makefile_ascii
 			@rm -f assets.tar.gz
@@ -107,9 +106,9 @@ $(NAME_LIB)	:
 $(NAME_EX)	:	$(OBJ_EX)
 			cc -o $(NAME_EX) $(OBJ_EX) -lc_graph_prog -lm \
 			-I./include/
-			@echo -e "\\033[32m[OK] Compilation\\033[m"
-			@tar -xvf assets.tar.gz
+			@if [ -a "assets.tar.gz" ]; then tar -xvf assets.tar.gz; fi
 			@echo -e "\\033[32m[OK] Untar assets\\033[m"
+			@echo -e "\\033[32m[OK] Compilation\\033[m"
 			@$(foreach file , $(SRC), echo -ne "\\033[32m[OK] \\033[m" && echo $(file);)
 			@cat .makefile_ascii
 			@rm -f assets.tar.gz

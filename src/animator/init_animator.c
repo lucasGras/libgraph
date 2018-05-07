@@ -29,7 +29,7 @@ static void		set_functions(animator_t *animator)
 }
 
 animator_t		*sub_create_animator(char *sprite_path,
-				int width, int height, sfEvent *m_event)
+				int width, int height, sfRenderWindow *ptr)
 {
 	animator_t	*animator = malloc(sizeof(animator_t));
 
@@ -39,23 +39,25 @@ animator_t		*sub_create_animator(char *sprite_path,
 						NULL);
 	sfSprite_setTexture(animator->sprite, animator->txtr, sfFalse);
 	animator->rect = create_rect(width, height);
-	animator->event = m_event;
+	animator->window_ptr = ptr;
 	animator->move_rect = 0;
 	animator->thread_ptr = NULL;
+	animator->mutex = sfMutex_create();
 	animator->activate = sfFalse;
-	animator->event_active = sfFalse;
 	animator->d = 10;
+	animator->stack_function = -1;
 	set_functions(animator);
 	return animator;
 }
 
 animator_t		*create_animator(char *sprite_path,
-				int width, int height, sfEvent *m_event)
+				int width, int height, sfRenderWindow *ptr)
 {
 	animator_t	*animator = sub_create_animator(sprite_path,
-						width, height, m_event);
+						width, height, ptr);
 
 	animator->joystickwapper = get_joystickwrapper(animator);
 	animator->keywrapper = my_keywrapper(animator);
+	sfMutex_lock(animator->mutex);
 	return animator;
 }

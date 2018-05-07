@@ -10,9 +10,9 @@
 
 sfVector2f	get_target_vector(enemy_t *enemy, sfVector2f target)
 {
-	sfVector2f	direction;
-	sfVector2f	unit;
-	float		magnitude;
+	sfVector2f	direction =  {0, 0};
+	sfVector2f	unit = {0, 0};
+	float		magnitude = 0;
 
 	direction.x = target.x - enemy->position.x;
 	direction.y = target.y - enemy->position.y;

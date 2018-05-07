@@ -5,7 +5,19 @@
 ** parser
 */
 
+#include <SFML/Graphics/Rect.h>
 #include "lib_graph.h"
+
+sfIntRect		get_rect_by_vector(sfVector2i vector)
+{
+	sfIntRect	rect;
+
+	rect.width = vector.x;
+	rect.height = vector.y;
+	rect.left = 0;
+	rect.top = 0;
+	return  rect;
+}
 
 sfVector2i		get_vector2i_str(char *str)
 {

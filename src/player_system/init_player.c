@@ -42,7 +42,7 @@ sfRectangleShape	**get_attack_collider(player_t *self)
 {
 	sfRectangleShape	**shapes;
 
-	shapes = malloc(sizeof(sfRectangleShape *) * 4);
+	shapes = malloc(sizeof(sfRectangleShape *) * 5);
 	if (!shapes)
 		return NULL;
 	for (int i = 0; i < 5; i++) {

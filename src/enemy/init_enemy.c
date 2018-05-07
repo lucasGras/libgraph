@@ -37,17 +37,21 @@ void		set_enemy_conf(enemy_t *enemy, FILE *fd)
 	enemy->speed = my_getnbr(get_fileconf_value("speed", fd));
 	enemy->texture = sfTexture_createFromFile(
 		get_fileconf_value("path", fd), sfFalse);
+	enemy->rect = get_rect_by_vector(
+		get_vector2i_str(get_fileconf_value("rect", fd)));
+	enemy->max_offset = my_getnbr(get_fileconf_value("max_offset", fd));
 }
 
 enemy_t		*create_enemy(char *path, player_t *m_target,
-				sfRenderWindow *ptr)
+				sfRenderWindow *ptr, sfVector2f pos)
 {
-	enemy_t	*enemy = malloc(sizeof(enemy_t));
+	enemy_t	*enemy 	= malloc(sizeof(enemy_t));
 	FILE	*fd;
 
 	valid_conf_file(path, ENEMY_EXT);
 	fd = fopen(path, "r");
 	set_enemy_conf(enemy, fd);
+	enemy->position = pos;
 	enemy->target = m_target;
 	enemy->box_collider = sfRectangleShape_create();
 	set_box_collider(enemy);

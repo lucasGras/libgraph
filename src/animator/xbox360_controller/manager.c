@@ -52,8 +52,6 @@ void		joystick_manager(animator_t *self)
 
 	if (self->move_rect >= 5)
 		self->move_rect = 0;
-	sfSprite_setTextureRect(self->sprite, self->rect);
-	sfSprite_setPosition(self->sprite, self->pos);
 	if (axis_vector.x > 50 || axis_vector.x < -50)
 		joystick_axis_x(self, axis_vector);
 	else if (axis_vector.y > 50 || axis_vector.y < -50)

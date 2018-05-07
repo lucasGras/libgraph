@@ -71,10 +71,11 @@ void	spritesheet_mouvement(animator_t *self)
 		self->move_rect = 0;
 	while (self->keywrapper[i].call) {
 		if (sfKeyboard_isKeyPressed(self->keywrapper[i].key)) {
-			self->keywrapper[i].call(self->keywrapper[i].argument);
+		 	self->stack_function = i;
+		 	//self->keywrapper[i].call(self->keywrapper[i].argument);
 		}
 		i++;
 	}
 	self->move_rect++;
-	wait_for_seconds(0.05);
+	wait_for_seconds(0.01);
 }

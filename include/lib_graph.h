@@ -52,8 +52,9 @@ char		*get_fileconf_value(char *, FILE *);
 #ifndef VECTOR_COMPONENT
 #define VECTOR_COMPONENT
 
-sfVector2f	new_vector2f(float, float);
-sfVector2i	new_vector2i(int, int);
+sfVector2f		new_vector2f(float, float);
+sfVector2i		new_vector2i(int, int);
+sfIntRect		get_rect_by_vector(sfVector2i);
 
 #endif
 
@@ -360,6 +361,11 @@ typedef struct {
 	void		(*call)(void *); /*!< Function called when key is pressed*/
 } joystickwapper_t;
 
+typedef struct	event_stack_s {
+	sfEventType		event;
+	struct event_stack_s	*next;
+} event_stack_t;
+
 /**
  * \struct animator_t
  * \brief Component to animate Player
@@ -371,33 +377,37 @@ typedef struct animator_s {
 	sfTexture		*txtr;
 	sfIntRect		rect;
 	sfVector2f		pos;
-	sfEvent			*event;
+	int			stack_function;
 	sfThread		*thread_ptr; /*!< Animator's thread to play animation in parallel*/
+	sfMutex			*mutex;
 	keywrapper_t		*keywrapper; /*!< Keywrapper to set all keyboard binds*/
 	joystickwapper_t	*joystickwapper; /*!< Joystickwrapper to set all controller binds*/
 	int			move_rect;
 	float			d;
+	sfRenderWindow		*window_ptr;
 	sfBool			activate;
-	sfBool			event_active;
 	void			*player; /*!< Reference to the player (player_t)*/
+	void			(*manage_event_stack)(struct animator_s *);
 	void			(*active)(struct animator_s *, void *); /*!< Active function, call this function at the start of your programm*/
 	void			(*desactive)(struct animator_s *);/*!< Desactive function, call this function at the end of your programm*/
-	void			(*manage_event)(struct animator_s *);
+	void			(*manage_event)(struct animator_s *, sfEventType);
 	void			(*set_extern_joystick)(struct animator_s *,
 				int, void (*)(void *), void *); /*!< Allows you to associate a function (with argument, or not) with a controller ID button*/
 	void			(*set_extern_keyboard)(struct animator_s *,
 				sfKeyCode, void (*)(void *), void *); /*!< Allows you to associate a function (with argument, or not) with a SfKeyCode*/
 } animator_t;
 
-animator_t		*create_animator(char *, int, int, sfEvent *);
+animator_t		*create_animator(char *, int, int, sfRenderWindow *);
 void			cor_animator_activate(animator_t *, void *);
 void			cor_animator_desactivate(animator_t *);
 void			cor_set_extern_joystick(animator_t *,
 			int, void (*)(void *), void *);
 void			cor_set_extern_keyboard(animator_t *,
 			sfKeyCode, void (*)(void *), void *);
-void			cor_manage_event(animator_t *);
+void			cor_manage_event(animator_t *, sfEventType);
 int			joystick_moved(animator_t *);
+void			cor_manage_event_stack(animator_t *);
+void			process_stack_event(event_stack_t **, animator_t *);
 void			my_right(void *);
 void			atk_sword(void *);
 void			atk_arrow_up(animator_t *);
@@ -552,6 +562,8 @@ typedef struct enemy_s {
 	sfRectangleShape	*box_collider;
 	sfTexture		*texture;
 	sfVector2f		position;
+	sfIntRect		rect;
+	int			max_offset;
 	sfThread		*thread;
 	sfRenderWindow		*window_ptr;
 	void			(*on_trigger)(struct enemy_s *);
@@ -560,7 +572,8 @@ typedef struct enemy_s {
 	void			(*mouvement)(struct enemy_s *, sfVector2f);
 } enemy_t;
 
-enemy_t		*create_enemy(char *, player_t *, sfRenderWindow *);
+enemy_t		*create_enemy(char *, player_t *, sfRenderWindow *,
+							sfVector2f);
 void		display_enemy(enemy_t *);
 void		cor_on_trigger(enemy_t *);
 sfVector2f	get_target_vector(enemy_t *, sfVector2f);

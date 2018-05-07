@@ -24,12 +24,12 @@ void    face_sword(animator_t *self)
 	set_attack_type(self, LEFT);
 	self->rect.width = 65;
 	self->rect.height = 80;
-	for (self->move_rect = 0; self->move_rect != 5; self->move_rect++) {
+	for (int i = 0; i <= 5; i++) {
 		self->rect.top = 445;
-		self->rect.left = 65 * self->move_rect;
+		self->rect.left = 65 * i;
 		sfSprite_setTextureRect(self->sprite, self->rect);
 		sfSprite_setPosition(self->sprite, self->pos);
-		wait_for_seconds(0.05);
+		wait_for_seconds(0.04);
 	}
 	self->rect = stock;
 	sfSprite_setTextureRect(self->sprite, self->rect);
@@ -43,9 +43,9 @@ void    face_sword_down(animator_t *self)
 	set_attack_type(self, BOT);
 	self->rect.width = 65;
 	self->rect.height = 90;
-	for (self->move_rect = 0; self->move_rect != 5; self->move_rect++) {
+	for (int i = 0; i <= 5; i++) {
 		self->rect.top = 535;
-		self->rect.left = 65 * self->move_rect;
+		self->rect.left = 65 * i;
 		sfSprite_setTextureRect(self->sprite, self->rect);
 		sfSprite_setPosition(self->sprite, self->pos);
 		wait_for_seconds(0.05);
@@ -63,9 +63,9 @@ void    face_sword_up(animator_t *self)
 	set_attack_type(self, TOP);
 	self->rect.width = 65;
 	self->rect.height = 90;
-	for (self->move_rect = 0; self->move_rect != 5; self->move_rect++) {
+	for (int i = 0; i <= 5; i++) {
 		self->rect.top = 340;
-		self->rect.left = 65 * self->move_rect;
+		self->rect.left = 65 * i;
 		sfSprite_setTextureRect(self->sprite, self->rect);
 		sfSprite_setPosition(self->sprite, self->pos);
 		wait_for_seconds(0.05);
@@ -83,11 +83,10 @@ void	atk_sword(void *animat)
 	set_attack_type(self, AROUND);
 	self->rect.width = 65;
 	self->rect.height = 100;
-	for (self->move_rect = 0; self->move_rect != 7; self->move_rect++) {
+	for (int i = 0; i <= 7; i++) {
 		self->rect.top = 215;
-		self->rect.left = 65 * self->move_rect;
+		self->rect.left = 65 * i;
 		sfSprite_setTextureRect(self->sprite, self->rect);
-		sfSprite_setPosition(self->sprite, self->pos);
 		wait_for_seconds(0.05);
 	}
 	self->rect = stock;

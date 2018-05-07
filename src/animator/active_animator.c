@@ -14,10 +14,15 @@ void		animator_statement(void *data)
 	sfVector2f	setter_pos;
 	player_t	*player = (player_t *)animator->player;
 
-	while (animator->activate == sfTrue) {
+	while (animator->activate) {
 		setter_pos = sfSprite_getPosition(animator->sprite);
 		player->position = setter_pos;
-		animator->manage_event(animator);
+		if (animator->stack_function != -1) {
+			animator->keywrapper[animator->stack_function].call(
+			animator->keywrapper
+			[animator->stack_function].argument);
+			animator->stack_function = -1;
+		}
 	}
 }
 
