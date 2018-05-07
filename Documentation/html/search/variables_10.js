@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['set_5fextern_5fjoystick',['set_extern_joystick',['../structanimator__s.html#a60b328f4e49b82313fcfdee8132ef6dc',1,'animator_s']]],
+  ['set_5fextern_5fkeyboard',['set_extern_keyboard',['../structanimator__s.html#ac0145d05402603f32649d0ca1f0e8454',1,'animator_s']]],
+  ['set_5finventory_5fsize',['set_inventory_size',['../structplayer__s.html#a600965a65cc3193b5576a085a9fc206b',1,'player_s']]],
+  ['set_5finventory_5fstate',['set_inventory_state',['../structplayer__s.html#ace8a49e1f55d53e6c621f974d6fc9454',1,'player_s']]],
+  ['set_5flife',['set_life',['../structplayer__s.html#abf70a36177967ad9d06d5275a9a240cd',1,'player_s']]],
+  ['set_5fmana',['set_mana',['../structplayer__s.html#aea83484b4161e69dbce2b6e757456584',1,'player_s']]],
+  ['set_5fmessage',['set_message',['../structbutton__s.html#a630ae3c5e377dd10c232c1e8a88a519f',1,'button_s']]],
+  ['set_5fscale',['set_scale',['../structbutton__s.html#ac32c1ac69ddf9fc234c8dd66581cc5b0',1,'button_s']]],
+  ['set_5ftextpos',['set_textpos',['../structbutton__s.html#a1582927ed54a2baa5b37cb52c74b04e9',1,'button_s']]],
+  ['set_5ftextsize',['set_textsize',['../structbutton__s.html#aae108327e15e24483a5df5efd7dffddc',1,'button_s']]],
+  ['set_5ftexture',['set_texture',['../structbutton__s.html#abe2ce9624266c957a732f0689540ff49',1,'button_s']]],
+  ['shape',['shape',['../structbutton__s.html#aebe0f3bc36d5401011b17549e80a1454',1,'button_s']]],
+  ['size',['size',['../structbutton__s.html#ad67781fe8717ba161ae3392e3009e349',1,'button_s']]],
+  ['skip',['skip',['../structdialog__box__s.html#a55ff8b69751f2284c0efb299a0ba20fc',1,'dialog_box_s']]],
+  ['skip_5fbutton',['skip_button',['../structdialog__box__s.html#ac8c29df1774313a050b52caee96cd0b2',1,'dialog_box_s']]],
+  ['sound',['sound',['../structdialog__box__s.html#a95d075eab4e28543c7d7bd9bd23c78bc',1,'dialog_box_s']]],
+  ['sound_5fbuffer',['sound_buffer',['../structdialog__box__s.html#a6c3aa63844687e5c175835d9ae281bca',1,'dialog_box_s']]],
+  ['sprite',['sprite',['../structpnj__component__s.html#a2558c95c23b2ce411ca7545cbf49d385',1,'pnj_component_s::sprite()'],['../structparticle__s.html#afa0786be310ec6a51ae33b4eb324fa70',1,'particle_s::sprite()'],['../structanimator__s.html#af8a1faa52380924cea611982c902197f',1,'animator_s::sprite()']]],
+  ['sprite_5fsheet_5fpath',['sprite_sheet_path',['../structanimator__s.html#a12ffdd2d6dece1c9398a5e5d8d7ce412',1,'animator_s']]],
+  ['start_5fpos',['start_pos',['../structparticle__s.html#ad8c547a79c686c6d4d38721a219f2385',1,'particle_s']]],
+  ['system_5fname',['system_name',['../structparticle__system__s.html#aebbd22763931c2bd54b84c10df8d4d5e',1,'particle_system_s']]],
+  ['systemp_5fthread',['systemp_thread',['../structparticle__system__s.html#a5a1ce05e5bc799e1ebfda1cea9809029',1,'particle_system_s']]]
+];
